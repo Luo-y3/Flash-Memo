@@ -11,10 +11,9 @@ interface CardData {
 interface CardSetProps {
   sectionId: string;
   deckId: string;
-  onBack: () => void;
 }
 
-export default function CardSet({ sectionId, deckId, onBack }: CardSetProps) {
+export default function CardSet({ sectionId, deckId }: CardSetProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,13 +33,7 @@ export default function CardSet({ sectionId, deckId, onBack }: CardSetProps) {
   if (error)
     return (
       <div className="text-center text-red-500 mt-10">
-        <p>⚠️ {error}</p>
-        <button
-          onClick={onBack}
-          className="mt-4 px-4 py-2 bg-gray-500 rounded hover:bg-gray-800 transition"
-        >
-          ← Back
-        </button>
+        <p>⚠️ Coming soon</p>
       </div>
     );
 
@@ -49,13 +42,6 @@ export default function CardSet({ sectionId, deckId, onBack }: CardSetProps) {
 
   return (
     <div className="p-6">
-      <button
-        onClick={onBack}
-        className="mb-4 px-4 py-2 bg-gray-500 rounded hover:bg-gray-800 transition"
-      >
-        ← กลับ
-      </button>
-
       {/* Send card to TypingSection */}
       <TypingSection cards={cards} />
     </div>

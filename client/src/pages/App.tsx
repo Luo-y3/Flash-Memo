@@ -38,9 +38,13 @@ function App() {
     }
   };
 
+  const showBack =
+    mode === "create" ||
+    (mode === "use" && (selectedSection !== null || selectedDeck !== null));
+
   return (
-    <div className="min-h-screen bg-[--color-background] text-[--color-text]">
-      <Header />
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      <Header showBack={showBack} onBack={handleBack} />
       <main className="p-6">
         {!mode && <SelectSection onSelectSection={handleSelectSection} />}
 
@@ -60,22 +64,12 @@ function App() {
         )}
 
         {mode === "use" && selectedSection && selectedDeck && (
-          <CardSet
-            sectionId={selectedSection}
-            deckId={selectedDeck}
-            onBack={handleBack}
-          />
+          <CardSet sectionId={selectedSection} deckId={selectedDeck} />
         )}
 
         {mode === "create" && (
           <div className="flex flex-col items-center justify-center h-[60vh] text-gray-400">
             <p>🛠️ Create mode is under construction...</p>
-            <button
-              onClick={handleBack}
-              className="mt-4 px-4 py-2 bg-[--color-card] rounded-lg hover:bg-[--color-accent] transition"
-            >
-              ← Back
-            </button>
           </div>
         )}
       </main>

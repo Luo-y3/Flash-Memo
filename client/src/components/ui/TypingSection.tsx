@@ -93,11 +93,11 @@ export default function TypingSection({ cards }: TypingSectionProps) {
   // New check: Stop displaying the section when all words are seen
   if (currentWord === null && cards.length > 0) {
     return (
-      <div className="text-center p-6 bg-[--color-card] rounded-2xl shadow-md max-w-md mx-auto mt-6">
+      <div className="text-center p-6 bg-[var(--color-card)] rounded-2xl shadow-md max-w-md mx-auto mt-6">
         <p className="text-2xl font-bold text-green-500 mb-3">
           🎉 คุณทำครบทุกคำแล้ว!
         </p>
-        <p className="text-lg text-[--color-text]">
+        <p className="text-lg text-[var(--color-text)]">
           คุณได้ฝึกฝนคำศัพท์ครบ {cards.length} คำ
         </p>
       </div>
@@ -105,16 +105,14 @@ export default function TypingSection({ cards }: TypingSectionProps) {
   }
 
   return (
-    <div className="flex flex-col items-center p-6 bg-[--color-card] rounded-2xl shadow-md max-w-md mx-auto mt-6">
+    <div className="flex flex-col items-center p-6 bg-[var(--color-card)] rounded-2xl shadow-md max-w-md mx-auto mt-6">
       <p className="text-sm font-medium mb-1 text-gray-500">
         คำที่เหลือ: {cards.length - seenWords.length} / {cards.length}
       </p>
-      <p className="text-lg font-medium mb-3 text-[--color-text]">
+      <p className="text-lg font-medium mb-3 text-[var(--color-text)]">
         แปลคำนี้เป็นภาษาไทย:
       </p>
-      <p className="text-3xl font-bold text-[--color-accent] mb-4">
-        {currentWord?.name}
-      </p>
+      <p className="text-3xl font-bold text-white mb-4">{currentWord?.name}</p>
 
       {showAnswer ? (
         <div className="w-full text-center">
@@ -142,7 +140,7 @@ export default function TypingSection({ cards }: TypingSectionProps) {
             <div className="flex space-x-2 mt-3">
               <button
                 type="submit"
-                className="flex-1 bg-[--color-accent] text-white font-semibold py-2 rounded-lg hover:opacity-90 transition"
+                className="flex-1 bg-[var(--color-accent)] text-white font-semibold py-2 rounded-lg hover:opacity-90 transition"
               >
                 ตอบ
               </button>

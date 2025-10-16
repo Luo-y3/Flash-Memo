@@ -1,6 +1,5 @@
 // client/src/components/ui/LanguageSelector.tsx
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, ArrowLeft } from "lucide-react";
 
 interface LanguageSelectorProps {
@@ -19,16 +18,23 @@ export default function LanguageSelector({
   onBack,
 }: LanguageSelectorProps) {
   const [mainLang, setMainLang] = useState<Language>({
-    code: "cn", // ค่าเริ่มต้นเป็น Chinese
+    code: "cn", // Make it by default
     name: "中文 (Chinese)",
     flag: "🇨🇳",
   });
   const [mainOpen, setMainOpen] = useState<boolean>(false);
 
-  // 💡 ตัด state และ logic ของ subLang ออก
+  // ✅ ปิด dropdown เมื่อคลิกนอกกรอบ
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".lang-dropdown")) setMainOpen(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   const practiceLanguages: Language[] = [
-    // 💡 เหลือเฉพาะภาษาที่ต้องการให้ผู้ใช้เลือกเป็น Section ID
     { code: "cn", name: "中文 (Chinese)", flag: "🇨🇳" },
     { code: "jp", name: "日本語 (Japanese)", flag: "🇯🇵" },
     { code: "en", name: "English", flag: "🇬🇧" },
@@ -40,7 +46,6 @@ export default function LanguageSelector({
   };
 
   const handleStartPractice = () => {
-    // ส่ง Section ID หลัก (mainLang.code) กลับไปให้ App.tsx
     onSelectLanguage(mainLang.code);
   };
 
@@ -53,22 +58,16 @@ export default function LanguageSelector({
           className="text-gray-400 hover:text-white transition mb-6 flex items-center gap-2 text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Select Mode
+          Back to menu
         </button>
 
         <h1 className="text-3xl font-bold text-white mb-2 text-center">
-          Select Main Language
+          Select Language
         </h1>
-        <p className="text-gray-400 text-center mb-8">
-          Choose the language you want to study (Translation will be Thai 🇹🇭)
-        </p>
 
         {/* Main Language Selector (Section ID) */}
         <div className="mb-8">
-          <label className="block text-sm font-semibold text-gray-300 mb-2">
-            Practice Language (Section ID)
-          </label>
-          <div className="relative">
+          <div className="relative lang-dropdown">
             {/* Dropdown Button */}
             <button
               onClick={() => setMainOpen(!mainOpen)}
@@ -103,24 +102,32 @@ export default function LanguageSelector({
           </div>
         </div>
 
-        {/* 💡 แสดงภาษาแปล (ไทย) แบบคงที่ */}
-        <div className="mb-8 p-4 bg-gray-700 rounded-lg border border-gray-600 text-white text-center">
+        {/* 💡 Translation Language to Thai by default */}
+        <div className="mb-6 p-4 bg-gray-700 rounded-lg border border-gray-600 text-white text-center">
           <p className="text-sm font-semibold text-gray-400 mb-1">
             Translation Language
           </p>
           <div className="flex items-center justify-center gap-2">
-            <span className="text-3xl">🇹🇭</span>
+            <span className="text-2xl">🇹🇭</span>
             <span className="font-bold">ไทย (Thai)</span>
           </div>
         </div>
 
         {/* Start Button */}
-        <button
-          onClick={handleStartPractice}
-          className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-200 text-xl shadow-lg shadow-indigo-500/50"
-        >
-          Continue to Decks
-        </button>
+        <div className="flex gap-4 justify-end">
+          <button
+            onClick={handleStartPractice}
+            className="w-1/2 bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-900 transition text-xl"
+          >
+            Use Mine
+          </button>
+          <button
+            onClick={handleStartPractice}
+            className="w-1/2 bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-900 transition text-xl"
+          >
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   );
