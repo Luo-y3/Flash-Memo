@@ -43,7 +43,7 @@ function App() {
     (mode === "use" && (selectedSection !== null || selectedDeck !== null));
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="min-h-screen bg-(--color-bg) text-(--color-text)">
       <Header showBack={showBack} onBack={handleBack} />
       <main className="p-6">
         {!mode && <SelectSection onSelectSection={handleSelectSection} />}

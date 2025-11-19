@@ -24,10 +24,10 @@ export default function TextInput({ placeholder, onSubmit }: TextInputProps) {
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder || "Type your answer..."}
-        className="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)]
-                   text-[var(--color-text)] rounded-xl shadow-sm
+        className="w-full px-4 py-3 bg-var(--color-surface) border border-(--color-border)
+                   text-(--color-text) rounded-xl shadow-sm
                    placeholder:text-gray-400 focus:outline-none focus:ring-2 
-                   focus:ring-[var(--color-accent)] focus:border-transparent transition"
+                   focus:ring-(--color-accent) focus:border-transparent transition"
       />
       <button
         onClick={() => {
@@ -35,7 +35,7 @@ export default function TextInput({ placeholder, onSubmit }: TextInputProps) {
           setValue("");
         }}
         className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1 text-sm font-medium
-                   text-white bg-[var(--color-accent)] rounded-lg shadow hover:opacity-90
+                   text-white bg-(--color-accent) rounded-lg shadow hover:opacity-90
                    active:scale-95 transition"
       >
         Send
