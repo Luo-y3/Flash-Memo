@@ -54,15 +54,14 @@ export default function AuthResponse() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-200 to-indigo-100 p-6">
+    <div className="min-h-screen flex items-center justify-center -bg-linear-to-r from-gray-200 to-indigo-100 p-6">
       <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-3xl min-h-[480px]">
         {/* Register */}
         <div
-          className={`absolute top-0 left-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-20 flex items-center justify-center p-8 ${
-            isRegister
-              ? "translate-x-full opacity-100 z-30"
-              : "translate-x-0 z-20"
-          }`}
+          className={`absolute top-0 left-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-20 flex items-center justify-center p-8 ${isRegister
+            ? "translate-x-full opacity-100 z-30"
+            : "translate-x-0 z-20"
+            }`}
         >
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -111,9 +110,8 @@ export default function AuthResponse() {
 
         {/* Login */}
         <div
-          className={`absolute top-0 left-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-10 flex items-center justify-center p-8 ${
-            isRegister ? "translate-x-0 opacity-0" : "translate-x-0 opacity-100"
-          }`}
+          className={`absolute top-0 left-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-10 flex items-center justify-center p-8 ${isRegister ? "translate-x-0 opacity-0" : "translate-x-0 opacity-100"
+            }`}
         >
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -159,9 +157,8 @@ export default function AuthResponse() {
 
         {/* Right Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-40 p-6 rounded-l-[150px] overflow-hidden ${
-            isRegister ? "-translate-x-full" : "translate-x-0"
-          }`}
+          className={`absolute top-0 right-0 h-full w-1/2 transition-transform duration-700 ease-in-out z-40 p-6 rounded-l-[150px] overflow-hidden ${isRegister ? "-translate-x-full" : "translate-x-0"
+            }`}
           style={{
             background: "linear-gradient(to right, #5c6bc0, #512da8)",
             color: "white",

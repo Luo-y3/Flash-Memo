@@ -6,6 +6,7 @@ import SelectSection from "../components/ui/SelectSection";
 import LanguageSelector from "../components/ui/LanguageSelector";
 import CardDecks from "../components/ui/CardDecks";
 import CardSet from "../components/ui/CardSet";
+import AuthToggle from "../components/ui/AuthToggle.tsx"
 
 function App() {
   const [mode, setMode] = useState<"create" | "use" | null>(null);
@@ -44,7 +45,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-(--color-bg) text-(--color-text)">
+
       <Header showBack={showBack} onBack={handleBack} />
+      <AuthToggle />
       <main className="p-6">
         {!mode && <SelectSection onSelectSection={handleSelectSection} />}
 
